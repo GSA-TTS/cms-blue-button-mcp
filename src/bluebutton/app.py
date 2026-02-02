@@ -1,9 +1,13 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastmcp import FastMCP
 from bluebutton.tools import register_tools
+from bluebutton.auth import create_bluebutton_auth
 from starlette.responses import JSONResponse
 
-# Initialize FastMCP server
-mcp = FastMCP("bluebutton")
+# Initialize FastMCP server with Blue Button OAuth
+mcp = FastMCP("bluebutton", auth=create_bluebutton_auth())
 
 # Register custom tools
 register_tools(mcp)
